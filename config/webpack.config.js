@@ -1,18 +1,11 @@
 "use strict";
-/**
- * Version of the Webpack Config used for Development.
- * 
- * This version will include SourceMaps, Uncompressed JS and HMR.
- */
-
 module.exports = {
-    
     output: {
         filename: "[name].min.js"
     },    
 
     devtool: 'source-map',
-    
+
     module: {
         rules: [
             {
@@ -21,7 +14,15 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env', '@babel/preset-react']                        
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-react',
+                            {
+                                plugins: ['@babel/plugin-proposal-class-properties'
+                                 , '@babel/plugin-transform-runtime'
+                              ],
+                            },
+                        ],                      
                     }
                 }
             }
