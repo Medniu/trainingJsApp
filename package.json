@@ -12,6 +12,7 @@
     "express": "^4.17.1"
   },
   "scripts": {
+    "test": "jest",
     "servers": "SET NODE_ENV=development & gulp watch",
     "dev-server": "SET NODE_ENV=development & gulp dev_server",
     "node-server": "SET NODE_ENV=development & nodemon server/app.js",
@@ -31,11 +32,15 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
     "@babel/plugin-transform-async-to-generator": "^7.14.5",
     "@babel/plugin-transform-runtime": "^7.14.5",
     "@babel/preset-env": "7.0.0-beta.34",
     "@babel/preset-react": "^7.0.0-beta.36",
-    "babel-core": "^6.26.3",
+    "@testing-library/react": "^12.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^27.0.6",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -51,11 +56,41 @@
     "gulp-rename": "1.2.2",
     "gulp-sass": "3.1.0",
     "gulp-sourcemaps": "2.6.1",
+    "jest": "^27.0.6",
     "nodemon": "^1.14.7",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-test-renderer": "^17.0.2",
     "uglify-js": "3.2.2",
     "webpack": "3.10.0",
     "webpack-stream": "4.0.0"
+  },
+  "jest": {
+    "transform": {
+      "\\.jsx?$": "babel-jest"
+    },
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules", "bower_components", "shared"],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "entry"
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-transform-runtime",
+      "@babel/plugin-transform-async-to-generator",
+      "@babel/plugin-proposal-class-properties"
+    ]
   }
 }

@@ -9,24 +9,22 @@ const cors = require("cors")
 
 const app = express();
 app.use(cors());
+app.get("/", (req, res) => {
+    const { searchTerm, itemsPerPage, pageNumber } = req.query;
 
-app.get("/", (req, res)=> {
-
-    const { searchTerm, amountOfRows, itemsPerRow  } = req.query;
-
-    if (searchTerm){
-            const result = data.filter((item) => {
-                return item.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
-                        || item.about.toLowerCase().includes(searchTerm.toLowerCase())
-                        || item.tags.some(tag => tag.toLocaleLowerCase().includes(searchTerm.toLowerCase())); 
-            }).slice(0, itemsPerRow*amountOfRows);
-
-            res = addHeadersAndStatus(200)(res);
-            res.json(result);
+    if (!searchTerm){
+        res = addHeadersAndStatus(200)(res);
+        const result = data.slice((pageNumber-1)*itemsPerPage, itemsPerPage*pageNumber);
+        res.json(result);
     }
     else{     
+        const result = data.filter((item) => {
+            return item.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
+                    || item.about.toLowerCase().includes(searchTerm.toLowerCase())
+                    || item.tags.some(tag => tag.toLocaleLowerCase().includes(searchTerm.toLowerCase())); 
+        }).slice((pageNumber-1)*itemsPerPage, itemsPerPage*pageNumber);
+
         res = addHeadersAndStatus(200)(res);
-        const result = data.slice(0, itemsPerRow*amountOfRows);
         res.json(result);
     }
 })
