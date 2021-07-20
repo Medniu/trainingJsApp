@@ -2,7 +2,7 @@ import React from 'react';
 import Item from './item';
 import Pagination from './pagination';
 
-const Home = ({ itemList, pageNumber, itemsPerPage, setPageNumber }) => {
+const Home = ({ itemList, pageNumber, itemsPerPage, setPageNumber, itemsCount }) => {
     const items = itemList.map((item) => (
         <Item
             key = {item._id}
@@ -22,7 +22,7 @@ const Home = ({ itemList, pageNumber, itemsPerPage, setPageNumber }) => {
                 {items}
             </div>
             <div>
-                <Pagination itemsCount={20} pageSize={itemsPerPage} currentPage={pageNumber} onPageChange={setPageNumber}> </Pagination>
+                <Pagination itemsCount={itemsCount} pageSize={itemsPerPage} currentPage={pageNumber} onPageChange={setPageNumber}> </Pagination>
             </div>
         </div>
      </section>

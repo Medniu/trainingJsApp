@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useDebounce from '../hooks/useDebounce';
 
-const Menu = ({ setItemList, pageNumber, itemsPerPage, setPageNumber }) => {
+const Menu = ({ setItemList, pageNumber, itemsPerPage, setPageNumber, setItemsCount }) => {
     const [showingSearch, setShowingSearch] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const debounceSearchTerm = useDebounce(searchTerm, 300);
@@ -22,7 +22,8 @@ const Menu = ({ setItemList, pageNumber, itemsPerPage, setPageNumber }) => {
             method:"GET",
         });
         const result = await response.json();
-        setItemList(result);
+        setItemList(result.items);
+        setItemsCount(result.amountOfItems);
     }
     
     useEffect(()=>{

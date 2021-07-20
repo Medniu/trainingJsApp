@@ -14,18 +14,25 @@ app.get("/", (req, res) => {
 
     if (!searchTerm){
         res = addHeadersAndStatus(200)(res);
-        const result = data.slice((pageNumber-1)*itemsPerPage, itemsPerPage*pageNumber);
-        res.json(result);
+        const amountOfItems = data.length;
+        const currentPageItems = data.slice((pageNumber-1)*itemsPerPage, itemsPerPage*pageNumber);
+        
+        const response = {items:currentPageItems, amountOfItems:amountOfItems}
+        res.json(response);
     }
     else{     
         const result = data.filter((item) => {
             return item.name.toLocaleLowerCase().includes(searchTerm.toLocaleLowerCase())
                     || item.about.toLowerCase().includes(searchTerm.toLowerCase())
                     || item.tags.some(tag => tag.toLocaleLowerCase().includes(searchTerm.toLowerCase())); 
-        }).slice((pageNumber-1)*itemsPerPage, itemsPerPage*pageNumber);
+        });
 
+        const amountOfItems = result.length
+        const currentPageItems = result.slice((pageNumber-1)*itemsPerPage, itemsPerPage*pageNumber);
         res = addHeadersAndStatus(200)(res);
-        res.json(result);
+
+        const response = {items:currentPageItems, amountOfItems:amountOfItems}
+        res.json(response);
     }
 })
 app.listen(port, () => console.log("serv is running"));

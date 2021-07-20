@@ -374,3 +374,20 @@
 [13/7/2021 -- 15:57]  Scripts ran on main.js
 [13/7/2021 -- 15:58]  Scripts ran on main.js
 [13/7/2021 -- 15:58]  restarted!
+[20/7/2021 -- 14:44]  Info task started
+[20/7/2021 -- 14:45]  Scripts ran on main.js
+[20/7/2021 -- 14:46]  restarted!
+[20/7/2021 -- 14:46]  restarted!
+[20/7/2021 -- 14:47]  Info task started
+[20/7/2021 -- 14:51]  restarted!
+[20/7/2021 -- 14:52]  Info task started
+[20/7/2021 -- 14:53]  restarted!
+[20/7/2021 -- 14:54]  restarted!
+[20/7/2021 -- 14:54]  restarted!
+[20/7/2021 -- 14:57]  Scripts ran on main.js
+[20/7/2021 -- 14:57]  Info task started
+[20/7/2021 -- 14:58]  Scripts ran on main.js
+[20/7/2021 -- 15:14]  Info task started
+[20/7/2021 -- 15:16]  restarted!
+[20/7/2021 -- 15:16]  restarted!
+[20/7/2021 -- 15:16]  restarted!
