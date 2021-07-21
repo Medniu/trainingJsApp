@@ -1,30 +1,29 @@
-/**
- * This file will hold the Main content that lives in the main body of the site
- * 
- */
 import React from 'react';
+import Item from './item';
+import Pagination from './pagination';
 
+const Home = ({ itemList, pageNumber, itemsPerPage, setPageNumber, itemsCount }) => {
+    const items = itemList.map((item) => (
+        <Item
+            key = {item._id}
+            price = {item.price}
+            picture = {item.picture}
+            name = {item.name}
+        />
+    ));
 
-class Home extends React.Component {
+    return (
+        <section id="home">
+        <div>
+            <div>
+                {items}
+            </div>
+            <div>
+                <Pagination itemsCount={itemsCount} pageSize={itemsPerPage} currentPage={pageNumber} onPageChange={setPageNumber}/>
+            </div>
+        </div>
+     </section>
+    )
+}; 
+export default Home;
 
-    /**
-     * Renders the default app in the window, we have assigned this to an element called root.
-     * 
-     * @returns JSX
-     * @memberof Home
-    */
-    render() {
-        return (
-            <section id="home">
-                <div className="content">
-                    <p>ELC Coding Test...</p>
-                </div>
-            </section>
-        );
-    }
-
-
-}
-
-// Export out the React Component
-module.exports = Home;
