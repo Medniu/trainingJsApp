@@ -14,15 +14,12 @@ const Home = ({ itemList, pageNumber, itemsPerPage, setPageNumber, itemsCount })
 
     return (
         <section id="home">
-        <div className="content">
-                <p>ELC Coding Test...</p>
-        </div>
         <div>
             <div>
                 {items}
             </div>
             <div>
-                <Pagination itemsCount={itemsCount} pageSize={itemsPerPage} currentPage={pageNumber} onPageChange={setPageNumber}> </Pagination>
+                <Pagination itemsCount={itemsCount} pageSize={itemsPerPage} currentPage={pageNumber} onPageChange={setPageNumber}/>
             </div>
         </div>
      </section>

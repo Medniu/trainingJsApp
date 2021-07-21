@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import useDebounce from '../hooks/useDebounce';
+import { serverRequest } from '../utils';
+import { URL, DEBOUNCE_TIME } from '../constants/index';
+
+const subMenu = ["HOLIDAY", "WHAT'S NEW", "PRODUCTS", "BESTSELLERS", "GOODBYES", "STORES", "INSPIRATION"];
 
 const Menu = ({ setItemList, pageNumber, itemsPerPage, setPageNumber, setItemsCount }) => {
     const [showingSearch, setShowingSearch] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
-    const debounceSearchTerm = useDebounce(searchTerm, 300);
-    const subMenu = ["HOLIDAY", "WHAT'S NEW", "PRODUCTS", "BESTSELLERS", "GOODBYES", "STORES", "INSPIRATION"];
+    const debounceSearchTerm = useDebounce(searchTerm, DEBOUNCE_TIME);
     
     const showSearchContainer = (e) => {
         e.preventDefault();
@@ -17,15 +20,12 @@ const Menu = ({ setItemList, pageNumber, itemsPerPage, setPageNumber, setItemsCo
     }
 
     async function fetchDataFromServe(){
-        const response = await fetch(`http://localhost:3035/?searchTerm=${debounceSearchTerm}&itemsPerPage=${itemsPerPage}&pageNumber=${pageNumber}`,
-        {
-            method:"GET",
-        });
+        const response = await serverRequest(URL, `?searchTerm=${debounceSearchTerm}&itemsPerPage=${itemsPerPage}&pageNumber=${pageNumber}`, "GET")
         const result = await response.json();
         setItemList(result.items);
         setItemsCount(result.amountOfItems);
     }
-    
+
     useEffect(()=>{
         fetchDataFromServe();
         setPageNumber(1);

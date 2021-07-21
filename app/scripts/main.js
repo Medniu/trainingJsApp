@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import Menu from './components/menu';
@@ -7,7 +7,7 @@ import Home from './components/home';
 const App = () => {
     const [itemList, setItemList] = useState([]);
     const [pageNumber, setPageNumber] = useState(1);
-    const [itemsCount, setItemsCount] = useState(20);
+    const [itemsCount, setItemsCount] = useState(0);
     const [itemsPerPage] = useState(4);
 
     return (
